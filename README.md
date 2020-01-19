@@ -4,7 +4,7 @@ A Swift class for Xcode iOS apps that provides Mayan Number Glyph mathematical o
 LICENSE
 -------
 
-Copyright (C) 2012-2019 by Montiel Mobile, LLC
+Copyright (C) 2019-2020 by Montiel Mobile, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
