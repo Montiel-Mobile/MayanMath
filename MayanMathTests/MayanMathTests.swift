@@ -20,10 +20,9 @@ class MayanMathTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testmayanSymbols() {
+    func testMayanSymbols() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
         
         XCTAssert(1.mayanSymbols().count == 1)
         XCTAssert(19.mayanSymbols().count == 1)
@@ -90,7 +89,7 @@ class MayanMathTests: XCTestCase {
         XCTAssert(MayanMath.symbols(forInt: 8000).count == 4)
         XCTAssert(MayanMath.symbols(forInt: 159999).count == 4)
         XCTAssert(MayanMath.symbols(forInt: 160000).count == 5)
-        XCTAssert(MayanMath.symbols(forInt: Int.max).count > 0)
+        XCTAssert(MayanMath.symbols(forInt: Int.max).count > 5)
     }
 
     func testMayanImagePerformance() {
