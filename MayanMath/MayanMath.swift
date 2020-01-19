@@ -99,10 +99,10 @@ public class MayanMath {
     /**
     * Left side operand in math operation or integer being converted
     */
-    public var firstInt: Int? {
-        return _firstInt
+    public var leftSide: Int? {
+        return _leftSide
     }
-    private var _firstInt: Int? = nil
+    private var _leftSide: Int? = nil
     
     /**
     * Left side operand base 20 digits representation
@@ -112,10 +112,10 @@ public class MayanMath {
     /**
     * Right side operand in math operation
     */
-    public var secondInt: Int? {
-        return _secondInt
+    public var rightSide: Int? {
+        return _rightSide
     }
-    private var _secondInt: Int? = nil
+    private var _rightSide: Int? = nil
     
     /**
     * Right side operand base 20 digits representation
@@ -145,13 +145,13 @@ public class MayanMath {
     public var resultsString: String {
         
         if mathOp == nil {
-            return "\(firstInt ?? 0)"
+            return "\(leftSide ?? 0)"
         }
         else if equalEnabled == true {
-            return "\(firstInt ?? 0) \(mathOp?.rawValue ?? "") \(secondInt ?? 0) = \((resultsInt ?? 0)) \(resultsRem == nil ? "" : "~[\(MayanMath.shared.resultsRem!)]")"
+            return "\(leftSide ?? 0) \(mathOp?.rawValue ?? "") \(rightSide ?? 0) = \((resultsInt ?? 0)) \(resultsRem == nil ? "" : "~[\(resultsRem!)]")"
         }
         else {
-            return "\(firstInt ?? 0) \(mathOp?.rawValue ?? "") \(secondInt ?? 0)"
+            return "\(leftSide ?? 0) \(mathOp?.rawValue ?? "") \(rightSide ?? 0)"
         }
     }
 
@@ -179,12 +179,12 @@ public class MayanMath {
     *
     * @discussion This is normally used for decimal to Mayan Glyph conversions
     *
-    * @param int An integer.
+    * @param withInt An integer.
     */
-    public func setFirst(_ int: Int) {
-        _firstInt = int
+    public func reset(withInt int: Int) {
+        _leftSide = int
         firstDigitValues = int.digitValues()
-        resetLast()
+        resetRightSide()
     }
     
     /**
@@ -194,11 +194,11 @@ public class MayanMath {
     *
     * @param startWithResult Default is false. Pass true to make the current result the subsequent left side operand.
     */
-    public func resetInts(startWithResult: Bool = false) {
+    public func reset(startWithResult: Bool = false) {
         
-        _firstInt = startWithResult ? resultsInt : nil
+        _leftSide = startWithResult ? resultsInt : nil
         firstDigitValues = startWithResult ? resultDigitValues : []
-        resetLast()
+        resetRightSide()
     }
 
     /**
@@ -206,9 +206,9 @@ public class MayanMath {
     *
     * @discussion Clears the right side math operand and operators.
     */
-    public func resetLast() {
+    public func resetRightSide() {
         
-        _secondInt = nil
+        _rightSide = nil
         _resultsInt = nil
         _resultsRem = nil
         mathOp = nil
@@ -222,31 +222,31 @@ public class MayanMath {
     *
     * @discussion Derive the operand integer values from the math operation and array of digit values.
     */
-    public func deriveInts() {
+    public func deriveIntegerResults() {
 
         var factor: Int = 1
-        _firstInt = 0
+        _leftSide = 0
         
         for int in firstDigitValues.reversed() {
-            _firstInt! += int * factor
+            _leftSide! += int * factor
             factor *= 20
         }
         
         factor = 1
-        _secondInt = nil
+        _rightSide = nil
         if secondDigitValues.count > 0 {
             
-            _secondInt = 0
+            _rightSide = 0
             
             for int in secondDigitValues.reversed() {
-                _secondInt! += int * factor
+                _rightSide! += int * factor
                 factor *= 20
             }
         }
         
         _resultsInt = nil
         _resultsRem = nil
-        if  equalEnabled == true, let mathOp = mathOp, let first = firstInt, let second = secondInt {
+        if  equalEnabled == true, let mathOp = mathOp, let first = leftSide, let second = rightSide {
             switch mathOp {
             case .add:
                 _resultsInt = first + second
@@ -270,11 +270,11 @@ public class MayanMath {
     *
     * @discussion Derive the  array of digit values from the math operation and operand integer values.
     */
-    public func calculateResults() {
+    public func deriveDigitValueResults() {
         
         _resultDigitValues = []
 
-        guard equalEnabled == true, let mathOp = mathOp, let first = firstInt, let second = secondInt else { return }
+        guard equalEnabled == true, let mathOp = mathOp, let first = leftSide, let second = rightSide else { return }
         
         switch mathOp {
         case .add:
