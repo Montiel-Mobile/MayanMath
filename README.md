@@ -1,6 +1,12 @@
 # MayanMath
 A Swift class for Xcode iOS apps that provides Mayan Number Glyph mathematical operations
 
+See the iOS app Mayan Math on the Apple App Store as one example of how this class can be 
+used to convert decimal integers to Mayan glyphs and perform math operations using Mayan
+glyphs.
+
+https://apps.apple.com/us/app/mayan-math/id1450110752
+
 LICENSE
 -------
 
