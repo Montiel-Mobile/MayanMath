@@ -95,7 +95,7 @@ extension Int {
             }
         }
         else {
-            symbols.append([#imageLiteral(resourceName: "zeroDown")])
+            symbols.append([UIImage(named: "zeroDown", in: Bundle(for: MayanMath.self), with: nil)!])
         }
         
         return symbols
