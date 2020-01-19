@@ -83,24 +83,24 @@ public class MayanMath {
     }
 
     // First operand
-    public var firstSymbols: [Int] = []
     public var firstInt: Int? {
         return _firstInt
     }
     private var _firstInt: Int? = nil
+    public var firstDigitValues: [Int] = []
 
     // Second operand
     public var secondInt: Int? {
         return _secondInt
     }
     private var _secondInt: Int? = nil
-    public var secondSymbols: [Int] = []
+    public var secondDigitValues: [Int] = []
 
     // Result
-    public var resultSymbols: [Int] {
-        return _resultSymbols
+    public var resultDigitValues: [Int] {
+        return _resultDigitValues
     }
-    private var _resultSymbols: [Int] = []
+    private var _resultDigitValues: [Int] = []
 
     public var resultsInt: Int? {
         return _resultsInt
@@ -132,14 +132,14 @@ public class MayanMath {
     // Used when converting digital -> Mayan
     public func setFirst(_ int: Int) {
         _firstInt = int
-        firstSymbols = int.digitValues()
+        firstDigitValues = int.digitValues()
         resetLast()
     }
     
     public func resetInts(startWithResult: Bool = false) {
         
         _firstInt = startWithResult ? resultsInt : nil
-        firstSymbols = startWithResult ? resultSymbols : []
+        firstDigitValues = startWithResult ? resultDigitValues : []
         resetLast()
     }
 
@@ -149,8 +149,8 @@ public class MayanMath {
         _resultsInt = nil
         _resultsRem = nil
         mathOp = nil
-        secondSymbols =  []
-        _resultSymbols = []
+        secondDigitValues =  []
+        _resultDigitValues = []
         equalEnabled = false
     }
 
@@ -159,18 +159,18 @@ public class MayanMath {
         var factor: Int = 1
         _firstInt = 0
         
-        for int in firstSymbols.reversed() {
+        for int in firstDigitValues.reversed() {
             _firstInt! += int * factor
             factor *= 20
         }
         
         factor = 1
         _secondInt = nil
-        if secondSymbols.count > 0 {
+        if secondDigitValues.count > 0 {
             
             _secondInt = 0
             
-            for int in secondSymbols.reversed() {
+            for int in secondDigitValues.reversed() {
                 _secondInt! += int * factor
                 factor *= 20
             }
@@ -199,22 +199,22 @@ public class MayanMath {
     
     public func calculateResults() {
         
-        _resultSymbols = []
+        _resultDigitValues = []
 
         guard equalEnabled == true, let mathOp = mathOp, let first = firstInt, let second = secondInt else { return }
         
         switch mathOp {
         case .add:
-            _resultSymbols = (first + second).digitValues()
+            _resultDigitValues = (first + second).digitValues()
             
         case .subtract:
-            _resultSymbols = (first - second).digitValues()
+            _resultDigitValues = (first - second).digitValues()
             
         case .multiply:
-            _resultSymbols = (first * second).digitValues()
+            _resultDigitValues = (first * second).digitValues()
 
         case .divide:
-            _resultSymbols = (first / second).digitValues()
+            _resultDigitValues = (first / second).digitValues()
         }
     }
 }
