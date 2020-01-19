@@ -18,9 +18,23 @@ public enum mathOperation: String {
 
 
 public class MayanMath {
-    
+    /**
+    * Reference to the shared singleton instance of MayanMath
+    *
+    * @discussion Reference to the shared singleton instance of MayanMath
+    *
+    * @return Reference to the shared singleton instance of MayanMath.
+    */
     public static let shared = MayanMath()
     
+    /**
+    * Given an Int returns an array of Mayan number glyphs
+    *
+    * @discussion Given an Int returns an array of UIImages with the Mayan Glyph representation with a transparent background.
+    *
+    * @param forInt An integer.
+    * @return an array of Mayan number glyphs.
+    */
     public class func symbols(forInt int: Int) -> [UIImage] {
         
         var mayanSymbols: [UIImage] = []
@@ -82,36 +96,52 @@ public class MayanMath {
         return newSymbolImage
     }
 
-    // First operand
+    /**
+    * Left side operand in math operation or integer being converted
+    */
     public var firstInt: Int? {
         return _firstInt
     }
     private var _firstInt: Int? = nil
+    
+    /**
+    * Left side operand base 20 digits representation
+    */
     public var firstDigitValues: [Int] = []
 
-    // Second operand
+    /**
+    * Right side operand in math operation
+    */
     public var secondInt: Int? {
         return _secondInt
     }
     private var _secondInt: Int? = nil
+    
+    /**
+    * Right side operand base 20 digits representation
+    */
     public var secondDigitValues: [Int] = []
 
-    // Result
+    /**
+    * Result of math operation
+    */
+    public var resultsInt: Int? {
+        return _resultsInt
+    }
+
+    /**
+    * Result base 20 digits representation
+    */
     public var resultDigitValues: [Int] {
         return _resultDigitValues
     }
     private var _resultDigitValues: [Int] = []
 
-    public var resultsInt: Int? {
-        return _resultsInt
-    }
     private var _resultsInt: Int? = nil
 
-    public var resultsRem: Int? {
-        return _resultsRem
-    }
-    private var _resultsRem: Int? = nil
-    
+    /**
+    * Result string representation
+    */
     public var resultsString: String {
         
         if mathOp == nil {
@@ -125,17 +155,45 @@ public class MayanMath {
         }
     }
 
-    // Math Operators
+    /**
+    * Remainder of math operation
+    */
+    public var resultsRem: Int? {
+        return _resultsRem
+    }
+    private var _resultsRem: Int? = nil
+    
+    /**
+    * Math operator
+    */
     public var mathOp: mathOperation? = nil
+    
+    
+    /**
+    * Should be set to true when the two operands have been set and is ready for calculation
+    */
     public var equalEnabled: Bool = false
 
-    // Used when converting digital -> Mayan
+    /**
+    * Set the left side operand or integer (Int) to be converted to Mayan Glyphs
+    *
+    * @discussion This is normally used for decimal to Mayan Glyph conversions
+    *
+    * @param int An integer.
+    */
     public func setFirst(_ int: Int) {
         _firstInt = int
         firstDigitValues = int.digitValues()
         resetLast()
     }
     
+    /**
+    * Reset math operands and operators
+    *
+    * @discussion Clears the operands and operators. When startWithResult is true, sets the current result to the left side operand
+    *
+    * @param startWithResult Default is false. Pass true to make the current result the subsequent left side operand.
+    */
     public func resetInts(startWithResult: Bool = false) {
         
         _firstInt = startWithResult ? resultsInt : nil
@@ -143,6 +201,11 @@ public class MayanMath {
         resetLast()
     }
 
+    /**
+    * Reset right side math operand and operators
+    *
+    * @discussion Clears the right side math operand and operators.
+    */
     public func resetLast() {
         
         _secondInt = nil
@@ -154,6 +217,11 @@ public class MayanMath {
         equalEnabled = false
     }
 
+    /**
+    * Derive the operand integer values from the math operation and array of digit values
+    *
+    * @discussion Derive the operand integer values from the math operation and array of digit values.
+    */
     public func deriveInts() {
 
         var factor: Int = 1
@@ -197,6 +265,11 @@ public class MayanMath {
         }
     }
     
+    /**
+    * Derive the  array of digit values from the math operation and operand integer values
+    *
+    * @discussion Derive the  array of digit values from the math operation and operand integer values.
+    */
     public func calculateResults() {
         
         _resultDigitValues = []
