@@ -66,7 +66,7 @@ extension Int {
                     case 3:
                         symbol.append(UIImage(named: "fifteen", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 4:
-                        symbol.append(UIImage(named: "five", in: Bundle(for: MayanMath.self), with: nil)!)
+                        symbol.append(UIImage(named: "one", in: Bundle(for: MayanMath.self), with: nil)!)
                         symbol.append(UIImage(named: "zero", in: Bundle(for: MayanMath.self), with: nil)!)
                     default:
                         break
