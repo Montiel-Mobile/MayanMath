@@ -126,7 +126,7 @@ public class MayanMath {
     /**
     * Left side operand base 20 digits representation
     */
-    public var firstDigitValues: [Int] = []
+    public var leftSideDigitValues: [Int] = []
 
     /**
     * Right side operand in math operation
@@ -139,7 +139,7 @@ public class MayanMath {
     /**
     * Right side operand base 20 digits representation
     */
-    public var secondDigitValues: [Int] = []
+    public var rightSideDigitValues: [Int] = []
 
     /**
     * Result of math operation
@@ -202,7 +202,7 @@ public class MayanMath {
     */
     public func reset(withInt int: Int) {
         _leftSide = int
-        firstDigitValues = int.digitValues()
+        leftSideDigitValues = int.digitValues()
         resetRightSide()
     }
     
@@ -216,7 +216,7 @@ public class MayanMath {
     public func reset(startWithResult: Bool = false) {
         
         _leftSide = startWithResult ? resultsInt : nil
-        firstDigitValues = startWithResult ? resultDigitValues : []
+        leftSideDigitValues = startWithResult ? resultDigitValues : []
         resetRightSide()
     }
 
@@ -231,7 +231,7 @@ public class MayanMath {
         _resultsInt = nil
         _resultsRem = nil
         mathOp = nil
-        secondDigitValues =  []
+        rightSideDigitValues =  []
         _resultDigitValues = []
         equalEnabled = false
     }
@@ -246,18 +246,18 @@ public class MayanMath {
         var factor: Int = 1
         _leftSide = 0
         
-        for int in firstDigitValues.reversed() {
+        for int in leftSideDigitValues.reversed() {
             _leftSide! += int * factor
             factor *= 20
         }
         
         factor = 1
         _rightSide = nil
-        if secondDigitValues.count > 0 {
+        if rightSideDigitValues.count > 0 {
             
             _rightSide = 0
             
-            for int in secondDigitValues.reversed() {
+            for int in rightSideDigitValues.reversed() {
                 _rightSide! += int * factor
                 factor *= 20
             }
