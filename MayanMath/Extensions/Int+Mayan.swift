@@ -44,13 +44,13 @@ extension Int {
                     let remainder5 = remainder20 % 5
                     switch remainder5 {
                     case 1:
-                        symbol.append(#imageLiteral(resourceName: "one"))
+                        symbol.append(UIImage(named: "one", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 2:
-                        symbol.append(#imageLiteral(resourceName: "two"))
+                        symbol.append(UIImage(named: "two", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 3:
-                        symbol.append(#imageLiteral(resourceName: "three"))
+                        symbol.append(UIImage(named: "three", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 4:
-                        symbol.append(#imageLiteral(resourceName: "four"))
+                        symbol.append(UIImage(named: "four", in: Bundle(for: MayanMath.self), with: nil)!)
                     default:
                         break
                     }
@@ -58,16 +58,16 @@ extension Int {
                     remainder20 /= 5
                     switch remainder20 {
                     case 0:
-                        symbol.append(#imageLiteral(resourceName: "zeroDown"))
+                        symbol.append(UIImage(named: "zeroDown", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 1:
-                        symbol.append(#imageLiteral(resourceName: "five"))
+                        symbol.append(UIImage(named: "five", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 2:
-                        symbol.append(#imageLiteral(resourceName: "ten"))
+                        symbol.append(UIImage(named: "ten", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 3:
-                        symbol.append(#imageLiteral(resourceName: "fifteen"))
+                        symbol.append(UIImage(named: "fifteen", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 4:
-                        symbol.append(#imageLiteral(resourceName: "five"))
-                        symbol.append(#imageLiteral(resourceName: "zero"))
+                        symbol.append(UIImage(named: "five", in: Bundle(for: MayanMath.self), with: nil)!)
+                        symbol.append(UIImage(named: "zero", in: Bundle(for: MayanMath.self), with: nil)!)
                     default:
                         break
                     }
@@ -75,15 +75,15 @@ extension Int {
                 else {
                     switch remainder20 {
                     case 0:
-                        symbol.append(#imageLiteral(resourceName: "zeroDown"))
+                        symbol.append(UIImage(named: "zeroDown", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 1:
-                        symbol.append(#imageLiteral(resourceName: "one"))
+                        symbol.append(UIImage(named: "one", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 2:
-                        symbol.append(#imageLiteral(resourceName: "two"))
+                        symbol.append(UIImage(named: "two", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 3:
-                        symbol.append(#imageLiteral(resourceName: "three"))
+                        symbol.append(UIImage(named: "three", in: Bundle(for: MayanMath.self), with: nil)!)
                     case 4:
-                        symbol.append(#imageLiteral(resourceName: "four"))
+                        symbol.append(UIImage(named: "four", in: Bundle(for: MayanMath.self), with: nil)!)
                     default:
                         break
                     }

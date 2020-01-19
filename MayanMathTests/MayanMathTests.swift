@@ -35,14 +35,14 @@ class MayanMathTests: XCTestCase {
         XCTAssert(159999.mayanSymbols().count == 4)
         XCTAssert(160000.mayanSymbols().count == 5)
 
-        XCTAssert(1.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "one")))
-        XCTAssert(2.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "two")))
-        XCTAssert(20.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "one")))
-        XCTAssert(40.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "two")))
-        XCTAssert(400.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "one")))
-        XCTAssert(800.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "two")))
-        XCTAssert(8000.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "one")))
-        XCTAssert(16000.mayanSymbols().first!.first!.isEqual(#imageLiteral(resourceName: "two")))
+        XCTAssert(1.mayanSymbols().first!.first!.isEqual(UIImage(named: "one", in: Bundle(for: MayanMath.self), with: nil)!))
+        XCTAssert(2.mayanSymbols().first!.first!.isEqual(UIImage(named: "two", in: Bundle(for: MayanMath.self), with: nil)!))
+        XCTAssert(20.mayanSymbols().first!.first!.isEqual(UIImage(named: "one", in: Bundle(for: MayanMath.self), with: nil)!))
+        XCTAssert(40.mayanSymbols().first!.first!.isEqual(UIImage(named: "two", in: Bundle(for: MayanMath.self), with: nil)!))
+        XCTAssert(400.mayanSymbols().first!.first!.isEqual(UIImage(named: "one", in: Bundle(for: MayanMath.self), with: nil)!))
+        XCTAssert(800.mayanSymbols().first!.first!.isEqual(UIImage(named: "two", in: Bundle(for: MayanMath.self), with: nil)!))
+        XCTAssert(8000.mayanSymbols().first!.first!.isEqual(UIImage(named: "one", in: Bundle(for: MayanMath.self), with: nil)!))
+        XCTAssert(16000.mayanSymbols().first!.first!.isEqual(UIImage(named: "two", in: Bundle(for: MayanMath.self), with: nil)!))
         
     }
 
