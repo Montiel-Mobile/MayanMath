@@ -3,7 +3,7 @@
 //  MayanCalc
 //
 //  Created by John C Montiel on 1/18/20.
-//  Copyright © 2020 Black Pixel. All rights reserved.
+//  Copyright © 2020 Montiel Mobile, LLC. All rights reserved.
 //
 
 import Foundation
