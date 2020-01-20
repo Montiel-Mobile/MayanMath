@@ -28,7 +28,7 @@
 import Foundation
 import UIKit
 
-public enum mathOperation: String {
+public enum MathOperation: String {
     case add = "+"
     case subtract = "-"
     case multiply = "x"
@@ -221,7 +221,7 @@ public class MayanMath {
       Should be set when the left side operand is fixed
       - Valid values are .add, .subtract, .multiply and .divide
     */
-    public var mathOp: mathOperation? = nil
+    public var mathOp: MathOperation? = nil
     
     
     /**
