@@ -64,7 +64,7 @@ public class MayanMath {
         return (int, glyph)
     }
 
-    private class func symbols(forInt int: Int) -> [UIImage] {
+    class func symbols(forInt int: Int) -> [UIImage] {
         
         var mayanSymbols: [UIImage] = []
         for symbol in int.mayanSymbols() {
