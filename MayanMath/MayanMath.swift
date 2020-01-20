@@ -173,7 +173,10 @@ public class MayanMath {
     */
     public var resultsString: String {
         
-        if mathOp == nil {
+        if resultsInt ?? 0 == Int.max {
+            return "Invalid operation"
+        }
+        else if mathOp == nil {
             return "\(leftSide ?? 0)"
         }
         else if equalEnabled == true {
@@ -288,8 +291,14 @@ public class MayanMath {
                 _resultsInt = first * second
                 
             case .divide:
-                _resultsRem = first % second > 0 ? first % second : nil
-                _resultsInt = first / second
+                if second > 0 {
+                    _resultsRem = first % second > 0 ? first % second : nil
+                    _resultsInt = first / second
+                }
+                else {
+                    _resultsRem = 0
+                    _resultsInt = Int.max
+                }
             }
         }
     }
@@ -316,7 +325,12 @@ public class MayanMath {
             _resultDigitValues = (first * second).digitValues()
 
         case .divide:
-            _resultDigitValues = (first / second).digitValues()
+            if second > 0 {
+                _resultDigitValues = (first / second).digitValues()
+            }
+            else {
+                _resultDigitValues = []
+            }
         }
     }
 }
