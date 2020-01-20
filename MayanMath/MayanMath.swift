@@ -57,24 +57,14 @@ public class MayanMath {
     */
     public class func mayanGlyph(forInt int: Int) -> MayanGlyph {
         
-        let symbols = self.symbols(forInt: int)
-        guard let glyph = symbols.last else {
+        guard let glyph = MayanMath.symbols(forInt: int).last else {
             fatalError("Something is wrong, should always derive a symbol")
         }
         
         return (int, glyph)
     }
 
-    
-    /**
-    * Given an Int returns an array of Mayan number glyphs
-    *
-    * @discussion Given an Int returns an array of UIImages with the Mayan Glyph representation with a transparent background.
-    *
-    * @param forInt An integer.
-    * @return an array of Mayan number glyphs.
-    */
-    public class func symbols(forInt int: Int) -> [UIImage] {
+    private class func symbols(forInt int: Int) -> [UIImage] {
         
         var mayanSymbols: [UIImage] = []
         for symbol in int.mayanSymbols() {
@@ -85,15 +75,7 @@ public class MayanMath {
         return mayanSymbols
     }
     
-    /**
-    * Given an array (max two) of Mayan number glyphs returns the combined image
-    *
-    * @discussion Given an array (max two) of Mayan number glyphs returns the combined image.
-    *
-    * @param mayanSymbol an array of Mayan number glyphs.
-    * @return a combined Mayan number glyph.
-    */
-    public class func image(forMayanSymbols symbols: [UIImage]) -> UIImage? {
+    private class func image(forMayanSymbols symbols: [UIImage]) -> UIImage? {
         
         if  symbols.count == 1 {
             return MayanMath.image(mayanTop: nil, mayanBottom: symbols[0])
