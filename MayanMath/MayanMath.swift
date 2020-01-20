@@ -37,24 +37,28 @@ public enum mathOperation: String {
 
 public typealias MayanGlyph = (int: Int, glyph: UIImage)
 
+/**
+ * A Swift class for Xcode iOS apps that provides Mayan Number Glyph mathematical operations
+ *
+ * This class enables:
+ *  - Conversion from integer to base 20 integer places and Mayan glyphs images
+ *  - Math operations on base 20 integer places array operands and results. The consumer populates the base 20 integer places arrays, using the various methods available.
+ */
 public class MayanMath {
     /**
-    * Reference to the shared singleton instance of MayanMath
-    *
-    * @discussion Reference to the shared singleton instance of MayanMath
-    *
-    * @return Reference to the shared singleton instance of MayanMath.
-    */
+     * Reference to the shared singleton instance of MayanMath
+     * Author: John Montiel
+     * Version: 1.1
+     */
     public static let shared = MayanMath()
     
     /**
-    * Given an Int returns a MayanGlyph
-    *
-    * @discussion Given an Int returns a MayanGlyph.
-    *
-    * @param forInt An integer.
-    * @return a MayanGlyph.
-    */
+     * Given an Int between 0 and 19, inclusively, returns a MayanGlyph
+     *
+     * If an integer greater than 19 is passed, only the mayan glyph of the last position is returned.
+     * Parameter int: An integer.
+     * Returns: a MayanGlyph.
+     */
     public class func mayanGlyph(forInt int: Int) -> MayanGlyph {
         
         guard let glyph = MayanMath.symbols(forInt: int).last else {
@@ -64,7 +68,14 @@ public class MayanMath {
         return (int, glyph)
     }
 
-    class func symbols(forInt int: Int) -> [UIImage] {
+    /**
+     * Given an Int returns the Mayan glyph images
+     *
+     * The glyphs are an array of UIImage.
+     * Parameter int: An integer.
+     * Returns: an array of UIImage.
+     */
+    public class func symbols(forInt int: Int) -> [UIImage] {
         
         var mayanSymbols: [UIImage] = []
         for symbol in int.mayanSymbols() {
@@ -126,41 +137,41 @@ public class MayanMath {
     }
 
     /**
-    * Left side operand in math operation or integer being converted
-    */
+     * Left side operand in math operation or integer being converted
+     */
     public var leftSide: Int? {
         return _leftSide
     }
     private var _leftSide: Int? = nil
     
     /**
-    * Left side operand base 20 digits representation
-    */
+     * Left side operand base 20 places representation
+     */
     public var leftSideDigitValues: [Int] = []
 
     /**
-    * Right side operand in math operation
-    */
+     * Right side operand in math operation
+     */
     public var rightSide: Int? {
         return _rightSide
     }
     private var _rightSide: Int? = nil
     
     /**
-    * Right side operand base 20 digits representation
-    */
+     * Right side operand base 20 places representation
+     */
     public var rightSideDigitValues: [Int] = []
 
     /**
-    * Result of math operation
-    */
+     * Result of math operation
+     */
     public var resultsInt: Int? {
         return _resultsInt
     }
 
     /**
-    * Result base 20 digits representation
-    */
+     * Result base 20 places representation
+     */
     public var resultDigitValues: [Int] {
         return _resultDigitValues
     }
@@ -169,8 +180,10 @@ public class MayanMath {
     private var _resultsInt: Int? = nil
 
     /**
-    * Result string representation
-    */
+     * Result string representation.
+     *
+     * A string showing the left and right side operands, math operation and result
+     */
     public var resultsString: String {
         
         if resultsInt ?? 0 == Int.max {
@@ -188,31 +201,33 @@ public class MayanMath {
     }
 
     /**
-    * Remainder of math operation
-    */
+     * Integer remainder of math operation
+     */
     public var resultsRem: Int? {
         return _resultsRem
     }
     private var _resultsRem: Int? = nil
     
     /**
-    * Math operator
-    */
+     * Math operator enumeration.
+     *
+     * Should be set when the left side operand is fixed
+     * - Valid values are .add, .subtract, .multiply and .divide
+     */
     public var mathOp: mathOperation? = nil
     
     
     /**
-    * Should be set to true when the two operands have been set and is ready for calculation
-    */
+     * Should be set to true to when the left and right side operands are fixed
+     */
     public var equalEnabled: Bool = false
 
     /**
-    * Set the left side operand or integer (Int) to be converted to Mayan Glyphs
-    *
-    * @discussion This is normally used for decimal to Mayan Glyph conversions
-    *
-    * @param withInt An integer.
-    */
+     * Set the left side operand or integer (Int) to be converted to Mayan Glyphs
+     *
+     * This is normally used for decimal to Mayan Glyph conversions
+     * Parameter: int An integer.
+     */
     public func reset(withInt int: Int) {
         _leftSide = int
         leftSideDigitValues = int.digitValues()
@@ -220,12 +235,11 @@ public class MayanMath {
     }
     
     /**
-    * Reset math operands and operators
-    *
-    * @discussion Clears the operands and operators. When startWithResult is true, sets the current result to the left side operand
-    *
-    * @param startWithResult Default is false. Pass true to make the current result the subsequent left side operand.
-    */
+     * Reset math operands and operators
+     *
+     * Clears the operands and operators. When startWithResult is true, sets the current result to the left side operand
+     * Parameter: startWithResult Set to true to make the current result the subsequent left side operand. Default is false.
+     */
     public func reset(startWithResult: Bool = false) {
         
         _leftSide = startWithResult ? resultsInt : nil
@@ -234,10 +248,8 @@ public class MayanMath {
     }
 
     /**
-    * Reset right side math operand and operators
-    *
-    * @discussion Clears the right side math operand and operators.
-    */
+     * Clears the right side math operand and operators
+     */
     public func resetRightSide() {
         
         _rightSide = nil
@@ -250,10 +262,10 @@ public class MayanMath {
     }
 
     /**
-    * Derive the operand integer values from the math operation and array of digit values
-    *
-    * @discussion Derive the operand integer values from the math operation and array of digit values.
-    */
+     * Derive the results
+     *
+     * Populate the operand and result integer values, and result array of base 20 places from the operand base 20 places values and math operation.
+     */
     public func deriveIntegerResults() {
 
         var factor: Int = 1
@@ -301,36 +313,11 @@ public class MayanMath {
                 }
             }
         }
-    }
-    
-    /**
-    * Derive the  array of digit values from the math operation and operand integer values
-    *
-    * @discussion Derive the  array of digit values from the math operation and operand integer values.
-    */
-    public func deriveDigitValueResults() {
         
         _resultDigitValues = []
 
-        guard equalEnabled == true, let mathOp = mathOp, let first = leftSide, let second = rightSide else { return }
+        guard equalEnabled == true, let result = resultsInt else { return }
         
-        switch mathOp {
-        case .add:
-            _resultDigitValues = (first + second).digitValues()
-            
-        case .subtract:
-            _resultDigitValues = (first - second).digitValues()
-            
-        case .multiply:
-            _resultDigitValues = (first * second).digitValues()
-
-        case .divide:
-            if second > 0 {
-                _resultDigitValues = (first / second).digitValues()
-            }
-            else {
-                _resultDigitValues = []
-            }
-        }
-    }
+        _resultDigitValues = result.digitValues()
+    }    
 }
