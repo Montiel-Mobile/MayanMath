@@ -35,6 +35,7 @@ public enum mathOperation: String {
     case divide = "/"
 }
 
+public typealias MayanGlyph = (int: Int, glyph: UIImage)
 
 public class MayanMath {
     /**
@@ -45,6 +46,25 @@ public class MayanMath {
     * @return Reference to the shared singleton instance of MayanMath.
     */
     public static let shared = MayanMath()
+    
+    /**
+    * Given an Int returns a MayanGlyph
+    *
+    * @discussion Given an Int returns a MayanGlyph.
+    *
+    * @param forInt An integer.
+    * @return a MayanGlyph.
+    */
+    public class func mayanGlyph(forInt int: Int) -> MayanGlyph {
+        
+        let symbols = self.symbols(forInt: int)
+        guard let glyph = symbols.last else {
+            fatalError("Something is wrong, should always derive a symbol")
+        }
+        
+        return (int, glyph)
+    }
+
     
     /**
     * Given an Int returns an array of Mayan number glyphs
@@ -58,14 +78,22 @@ public class MayanMath {
         
         var mayanSymbols: [UIImage] = []
         for symbol in int.mayanSymbols() {
-            if let mayanSymbol  = MayanMath.image(mayanSymbol: symbol) {
+            if let mayanSymbol  = MayanMath.image(forMayanSymbols: symbol) {
                 mayanSymbols.append(mayanSymbol)
             }
         }
         return mayanSymbols
     }
     
-    private class func image(mayanSymbol symbols: [UIImage]) -> UIImage? {
+    /**
+    * Given an array (max two) of Mayan number glyphs returns the combined image
+    *
+    * @discussion Given an array (max two) of Mayan number glyphs returns the combined image.
+    *
+    * @param mayanSymbol an array of Mayan number glyphs.
+    * @return a combined Mayan number glyph.
+    */
+    public class func image(forMayanSymbols symbols: [UIImage]) -> UIImage? {
         
         if  symbols.count == 1 {
             return MayanMath.image(mayanTop: nil, mayanBottom: symbols[0])
