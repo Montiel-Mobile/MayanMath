@@ -267,6 +267,10 @@ public class MayanMath {
         _resultDigitValues = []
         equalEnabled = false
     }
+    
+    private let maxFactor = Int.max / 8000 // Factored by three orders of magnitude (base 20) less than max
+    private let exceedeMaxError = NSError(domain: "MayanMath", code: 999, userInfo: [NSLocalizedDescriptionKey: "Integer value exceeded capacity"])
+    private let divisionError = NSError(domain: "MayanMath", code: 998, userInfo: [NSLocalizedDescriptionKey: "Division by zero"])
 
     /**
       Derive the results
@@ -276,57 +280,65 @@ public class MayanMath {
       Use MayanMath.mayanGlyph(forInt:).last for each Int in the array of places for the MayanGlyph, which contains the int: Int and glyph: UIImage values
     */
     public func deriveResults() {
-
-        var factor: Int = 1
-        _leftSide = 0
         
-        for int in leftSideDigitValues.reversed() {
-            _leftSide! += int * factor
-            factor *= 20
-        }
-        
-        factor = 1
-        _rightSide = nil
-        if rightSideDigitValues.count > 0 {
+        do {
+            var factor: Int = 1
+            _leftSide = 0
             
-            _rightSide = 0
-            
-            for int in rightSideDigitValues.reversed() {
-                _rightSide! += int * factor
+            for int in leftSideDigitValues.reversed() {
+                if factor > maxFactor { throw exceedeMaxError }
+                
+                _leftSide! += int * factor
                 factor *= 20
             }
-        }
-        
-        _resultsInt = nil
-        _resultsRem = nil
-        if  equalEnabled == true, let mathOp = mathOp, let first = leftSide, let second = rightSide {
-            switch mathOp {
-            case .add:
-                _resultsInt = first + second
+            
+            factor = 1
+            _rightSide = nil
+            if rightSideDigitValues.count > 0 {
+                _rightSide = 0
                 
-            case .subtract:
-                _resultsRem = first >= second ? nil : first - second
-                _resultsInt = first >= second ? first - second : 0
-                
-            case .multiply:
-                _resultsInt = first * second
-                
-            case .divide:
-                if second > 0 {
-                    _resultsRem = first % second > 0 ? first % second : nil
-                    _resultsInt = first / second
-                }
-                else {
-                    _resultsRem = 0
-                    _resultsInt = Int.max
+                for int in rightSideDigitValues.reversed() {
+                    if factor > maxFactor { throw exceedeMaxError }
+
+                    _rightSide! += int * factor
+                    factor *= 20
                 }
             }
+            
+            _resultsInt = nil
+            _resultsRem = nil
+            if  equalEnabled == true, let mathOp = mathOp, let first = leftSide, let second = rightSide {
+                switch mathOp {
+                case .add:
+                    _resultsInt = first + second
+                    
+                case .subtract:
+                    _resultsRem = first >= second ? nil : first - second
+                    _resultsInt = first >= second ? first - second : 0
+                    
+                case .multiply:
+                    _resultsInt = first * second
+                    
+                case .divide:
+                    if second > 0 {
+                        _resultsRem = first % second > 0 ? first % second : nil
+                        _resultsInt = first / second
+                    }
+                    else {
+                        throw divisionError
+                    }
+                }
+            }
+        }
+        catch(_) {
+            _resultsRem = 0
+            _resultsInt = Int.max
+            _resultDigitValues = []
+            return
         }
         
         _resultDigitValues = []
-
         guard equalEnabled == true, let result = resultsInt else { return }
-        
         _resultDigitValues = result.digitValues()
     }    
 }
