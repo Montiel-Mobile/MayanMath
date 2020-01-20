@@ -146,6 +146,8 @@ public class MayanMath {
     
     /**
      * Left side operand base 20 places representation
+     * 
+     * Use MayanMath.mayanGlyph(forInt:).last for each Int in the array of places for the MayanGlyph, which contains the int: Int and glyph: UIImage values
      */
     public var leftSideDigitValues: [Int] = []
 
@@ -159,6 +161,8 @@ public class MayanMath {
     
     /**
      * Right side operand base 20 places representation
+     *
+     * Use MayanMath.mayanGlyph(forInt:).last for each Int in the array of places for the MayanGlyph, which contains the int: Int and glyph: UIImage values
      */
     public var rightSideDigitValues: [Int] = []
 
@@ -171,6 +175,8 @@ public class MayanMath {
 
     /**
      * Result base 20 places representation
+     *
+     * Use MayanMath.mayanGlyph(forInt:).last for each Int in the array of places for the MayanGlyph, which contains the int: Int and glyph: UIImage values
      */
     public var resultDigitValues: [Int] {
         return _resultDigitValues
@@ -265,8 +271,10 @@ public class MayanMath {
      * Derive the results
      *
      * Populate the operand and result integer values, and result array of base 20 places from the operand base 20 places values and math operation.
+     * 
+     * Use MayanMath.mayanGlyph(forInt:).last for each Int in the array of places for the MayanGlyph, which contains the int: Int and glyph: UIImage values
      */
-    public func deriveIntegerResults() {
+    public func deriveResults() {
 
         var factor: Int = 1
         _leftSide = 0
