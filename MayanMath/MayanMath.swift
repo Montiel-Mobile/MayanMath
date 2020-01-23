@@ -47,7 +47,7 @@ public typealias MayanGlyph = (int: Int, glyph: UIImage)
  * Author: John Montiel
  * Version: 1.1
  */
-public class MayanMath {
+public class MayanMath: ObservableObject {
     /**
       Reference to the shared singleton instance of MayanMath
     */
@@ -150,7 +150,7 @@ public class MayanMath {
      
       Append with the base 20 place values of an integer, where the last item is the 1's place, second to last is the 20's place, third to last is the 400's place, etc., as the user selects Mayan glyphs
     */
-    public var leftSideDigitValues: [Int] = []
+    @Published public var leftSideDigitValues: [Int] = []
 
     /**
       Right side operand in math operation
@@ -165,7 +165,7 @@ public class MayanMath {
      
       Append with the base 20 place values of an integer, where the last item is the 1's place, second to last is the 20's place, third to last is the 400's place, etc., as the user selects Mayan glyphs
     */
-    public var rightSideDigitValues: [Int] = []
+    @Published public var rightSideDigitValues: [Int] = []
 
     /**
       Result of math operation
@@ -173,18 +173,15 @@ public class MayanMath {
     public var resultsInt: Int? {
         return _resultsInt
     }
+    private var _resultsInt: Int? = nil
 
     /**
       Result base 20 places representation
      
       Use MayanMath.mayanGlyph(forInt:).last for each Int in the array of places for the MayanGlyph, which contains the int: Int and glyph: UIImage values
     */
-    public var resultDigitValues: [Int] {
-        return _resultDigitValues
-    }
-    private var _resultDigitValues: [Int] = []
+    @Published public var resultDigitValues: [Int] = []
 
-    private var _resultsInt: Int? = nil
 
     /**
       Result string representation.
@@ -221,13 +218,13 @@ public class MayanMath {
       Should be set when the left side operand is fixed
       - Valid values are .add, .subtract, .multiply and .divide
     */
-    public var mathOp: MathOperation? = nil
+    @Published public var mathOp: MathOperation? = nil
     
     
     /**
       Should be set to true to when the left and right side operands are fixed
     */
-    public var equalEnabled: Bool = false
+    @Published public var equalEnabled: Bool = false
 
     /**
       Set the left side operand or integer (Int) to be converted to Mayan Glyphs
@@ -264,7 +261,7 @@ public class MayanMath {
         _resultsRem = nil
         mathOp = nil
         rightSideDigitValues =  []
-        _resultDigitValues = []
+        resultDigitValues = []
         equalEnabled = false
     }
     
@@ -333,12 +330,12 @@ public class MayanMath {
         catch(_) {
             _resultsRem = 0
             _resultsInt = Int.max
-            _resultDigitValues = []
+            resultDigitValues = []
             return
         }
         
-        _resultDigitValues = []
+        resultDigitValues = []
         guard equalEnabled == true, let result = resultsInt else { return }
-        _resultDigitValues = result.digitValues()
+        resultDigitValues = result.digitValues()
     }    
 }
