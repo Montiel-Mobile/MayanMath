@@ -27,7 +27,7 @@
 import Foundation
 import UIKit
 
-extension Int {
+public extension Int {
     
     func digitValues(forBase base: Int = 20) -> [Int] {
         

@@ -87,6 +87,13 @@ public class MayanMath: ObservableObject {
         return mayanSymbols
     }
     
+    /**
+      Given an Int returns the Mayan glyph images
+     
+      The glyphs are an array of UIImage.
+    * Parameter symbols: An array of one or two Image that represent a combined dot and bar glyph.
+    * Returns: a UIImage.
+    */
     private class func image(forMayanSymbols symbols: [UIImage]) -> UIImage? {
         
         if  symbols.count == 1 {
