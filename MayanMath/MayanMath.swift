@@ -31,7 +31,7 @@ import UIKit
 public enum MathOperation: String {
     case add = "+"
     case subtract = "-"
-    case multiply = "x"
+    case multiply = "X"
     case divide = "/"
 }
 
