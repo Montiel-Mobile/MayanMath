@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5216F9E823E605FF00E9A425 /* UIImage+Mayan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216F9E723E605FF00E9A425 /* UIImage+Mayan.swift */; };
 		522F9E6823D3CED7000E24C6 /* MayanMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 522F9E6623D3CED7000E24C6 /* MayanMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		522F9E7123D3CF6F000E24C6 /* MayanMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F9E6E23D3CF6F000E24C6 /* MayanMath.swift */; };
 		522F9E7223D3CF6F000E24C6 /* Int+Mayan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F9E7023D3CF6F000E24C6 /* Int+Mayan.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5216F9E723E605FF00E9A425 /* UIImage+Mayan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Mayan.swift"; sourceTree = "<group>"; };
 		522F9E6323D3CED7000E24C6 /* MayanMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MayanMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		522F9E6623D3CED7000E24C6 /* MayanMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MayanMath.h; sourceTree = "<group>"; };
 		522F9E6723D3CED7000E24C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				522F9E7023D3CF6F000E24C6 /* Int+Mayan.swift */,
+				5216F9E723E605FF00E9A425 /* UIImage+Mayan.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5216F9E823E605FF00E9A425 /* UIImage+Mayan.swift in Sources */,
 				522F9E7223D3CF6F000E24C6 /* Int+Mayan.swift in Sources */,
 				522F9E7123D3CF6F000E24C6 /* MayanMath.swift in Sources */,
 			);

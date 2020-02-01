@@ -1,6 +1,6 @@
 //
 //  MayanMath.swift
-//  MayanCalc
+//  MayanMath
 //
 //  Created by John C Montiel on 1/18/20.
 //
@@ -60,9 +60,9 @@ public class MayanMath: ObservableObject {
     * Parameter int: An integer.
     * Returns: a MayanGlyph.
     */
-    public class func mayanGlyph(forInt int: Int) -> MayanGlyph {
+    public class func mayanGlyph(forInt int: Int, _ symbolType: SymbolType = .flat) -> MayanGlyph {
         
-        guard let glyph = MayanMath.symbols(forInt: int).last else {
+        guard let glyph = MayanMath.symbols(forInt: int, symbolType).last else {
             fatalError("Something is wrong, should always derive a symbol")
         }
         
@@ -76,10 +76,10 @@ public class MayanMath: ObservableObject {
     * Parameter int: An integer.
     * Returns: an array of UIImage.
     */
-    public class func symbols(forInt int: Int) -> [UIImage] {
+    public class func symbols(forInt int: Int, _ symbolType: SymbolType) -> [UIImage] {
         
         var mayanSymbols: [UIImage] = []
-        for symbol in int.mayanSymbols() {
+        for symbol in int.mayanSymbols(symbolType) {
             if let mayanSymbol  = MayanMath.image(forMayanSymbols: symbol) {
                 mayanSymbols.append(mayanSymbol)
             }
