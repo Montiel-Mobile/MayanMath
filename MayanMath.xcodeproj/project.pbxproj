@@ -17,6 +17,7 @@
 		522F9E8323D3D015000E24C6 /* Int+Mayan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F9E7023D3CF6F000E24C6 /* Int+Mayan.swift */; };
 		522F9E8523D3D0CD000E24C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522F9E8423D3D0CD000E24C6 /* Assets.xcassets */; };
 		526F1AAE23D3D83B00AC6B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522F9E8423D3D0CD000E24C6 /* Assets.xcassets */; };
+		52B6D85023E68276004BF828 /* UIImage+Mayan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216F9E723E605FF00E9A425 /* UIImage+Mayan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B6D85023E68276004BF828 /* UIImage+Mayan.swift in Sources */,
 				522F9E8223D3D00F000E24C6 /* MayanMath.swift in Sources */,
 				522F9E8323D3D015000E24C6 /* Int+Mayan.swift in Sources */,
 				522F9E7A23D3CFA0000E24C6 /* MayanMathTests.swift in Sources */,
