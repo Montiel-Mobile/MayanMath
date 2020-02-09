@@ -58,6 +58,7 @@ public class MayanMath: ObservableObject {
      
       If an integer greater than 19 is passed, only the Mayan glyph of the last position is returned.
     * Parameter int: An integer.
+    * Parameter symbolType: The type of symbol desired, flat or beveled.
     * Returns: a MayanGlyph.
     */
     public class func mayanGlyph(forInt int: Int, _ symbolType: SymbolType = .flat) -> MayanGlyph {
@@ -74,6 +75,7 @@ public class MayanMath: ObservableObject {
      
       The glyphs are an array of UIImage.
     * Parameter int: An integer.
+    * Parameter symbolType: The type of symbol desired, flat or beveled.
     * Returns: an array of UIImage.
     */
     public class func symbols(forInt int: Int, _ symbolType: SymbolType) -> [UIImage] {

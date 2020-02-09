@@ -28,7 +28,7 @@ import UIKit
 
 public enum SymbolType: String {
     case flat = ""
-//    case bevel = "Bevel"  -  COMING SOON!
+    case bevel = "Bevel"
 }
 
 public enum Symbol: String {
@@ -43,11 +43,13 @@ public enum Symbol: String {
     case zeroDown
 }
 
+let kNegativeColorLiteral = "Red"
+
 extension UIImage {
         
     class func symbol(_ symbol: Symbol, _ type: SymbolType, _ isNegative: Bool) -> UIImage {
-        
-        let name = "\(symbol.rawValue)\(type.rawValue)"
+        let red = isNegative ? kNegativeColorLiteral : ""
+        let name = "\(symbol.rawValue)\(type.rawValue)\(red)"
         return UIImage(named: name,  in: Bundle(for: MayanMath.self), with: nil)!
     }
 }
