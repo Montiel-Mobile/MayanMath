@@ -12,9 +12,9 @@ MayanMath is setup to be used as a singleton. So it is referenced as MayanMath.s
 ## Class functions
 
 
-mayanGlyph(forInt:symbolType:) - Given an integer from 0 to 19, returns a MayanGlyph that contains the UIImage respresention
+**mayanGlyph(forInt:symbolType:)** - Given an integer from 0 to 19, returns a MayanGlyph that contains the UIImage respresention
 
-symbols(forInt:symbolType:) - Given any integer, returns an array of UIImages with the mayan representation
+**symbols(forInt:symbolType:)** - Given any integer, returns an array of UIImages with the mayan representation
 
 ## Instance properties and functions
 
@@ -45,8 +45,7 @@ symbols(forInt:symbolType:) - Given any integer, returns an array of UIImages wi
 **deriveResults()** - a function to derive all results, converting the left and right side arrays to their integer representations, and if equal is enabled the math operation results as well.
 
 
-Usage Examples
---------------
+## Usage Examples
 
 > MayanMath.shared.reset(withInt: 0)
 > MayanMath.shared.leftSideDigitValues = [8]
@@ -55,14 +54,13 @@ Usage Examples
 > MayanMath.shared.equalEnabled = true
 > MayanMath.shared.deriveResults()
 
-MayanMath.shared.resultDigitValues will now contain [1,5] and resultsInt value will be 25. 
+*MayanMath.shared.resultDigitValues* will now contain [1,5] and resultsInt value will be 25. 
 
-Use the class methods mayanGlyph(forInt:symbolType:) and symbols(forInt:symbolType:) to get the glyph UIImage representations
+Use the class methods *mayanGlyph(forInt:symbolType:)* and *symbols(forInt:symbolType:)* to get the glyph UIImage representations
 
 
+# LICENSE
 
-LICENSE
--------
 
 Copyright (C) 2019-2020 by Montiel Mobile, LLC
 
