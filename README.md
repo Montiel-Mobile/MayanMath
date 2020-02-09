@@ -48,10 +48,15 @@ MayanMath is setup to be used as a singleton. So it is referenced as MayanMath.s
 ## Usage Examples
 
 > MayanMath.shared.reset(withInt: 0)
+>
 > MayanMath.shared.leftSideDigitValues = [8]
+>
 > MayanMath.shared.mathOp = .add
+>
 > MayanMath.shared.rightSideDigitValues = [17]
+>
 > MayanMath.shared.equalEnabled = true
+>
 > MayanMath.shared.deriveResults()
 
 *MayanMath.shared.resultDigitValues* will now contain [1,5] and resultsInt value will be 25. 
