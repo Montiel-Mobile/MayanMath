@@ -59,8 +59,7 @@ class MayanMathTests: XCTestCase {
         mayanEngine.leftSideDigitValues = [1]
         mayanEngine.deriveResults()
         let positive = mayanEngine.leftSide!
-        mayanEngine.negateLeftSide()
-        mayanEngine.deriveResults()
+        mayanEngine.negate()
         let negative = mayanEngine.leftSide!
         XCTAssert(positive > negative)
         
@@ -99,7 +98,7 @@ class MayanMathTests: XCTestCase {
         mayanEngine.reset(withInt: mayanEngine.resultsInt!)
         mayanEngine.mathOp = .multiply
         mayanEngine.rightSideDigitValues = [10]
-        mayanEngine.negateRightSide()
+        mayanEngine.negate()
         mayanEngine.equalEnabled = true
         mayanEngine.deriveResults()
         XCTAssert(mayanEngine.resultsInt! == 30)
