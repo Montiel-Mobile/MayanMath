@@ -10,7 +10,7 @@ import XCTest
 
 class MayanMathTests: XCTestCase {
 
-    var mayanSymbols: [[UIImage]] = []
+    var mayanEngine = MayanMath()
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -51,6 +51,59 @@ class MayanMathTests: XCTestCase {
         XCTAssert(8000.mayanSymbols(.flat).first!.first!.isEqual(UIImage.symbol(.one, .flat, false)))
         XCTAssert(16000.mayanSymbols(.flat).first!.first!.isEqual(UIImage.symbol(.two, .flat, false)))
         
+    }
+    
+    func testMayanOperations() {
+        
+        // Test negation of left side operand
+        mayanEngine.leftSideDigitValues = [1]
+        mayanEngine.deriveResults()
+        let positive = mayanEngine.leftSide!
+        mayanEngine.negateLeftSide()
+        mayanEngine.deriveResults()
+        let negative = mayanEngine.leftSide!
+        XCTAssert(positive > negative)
+        
+        // Test multiplication
+        mayanEngine.mathOp = .multiply
+        mayanEngine.rightSideDigitValues = [-3]
+        mayanEngine.equalEnabled = true
+        mayanEngine.deriveResults()
+        XCTAssert(mayanEngine.resultsInt! == 3)
+        
+        // Test addition with starting int of the prior result
+        mayanEngine.reset(withInt: mayanEngine.resultsInt!)
+        mayanEngine.mathOp = .add
+        mayanEngine.rightSideDigitValues = [7]
+        mayanEngine.equalEnabled = true
+        mayanEngine.deriveResults()
+        XCTAssert(mayanEngine.resultsInt! == 10)
+        
+        // Test division
+        mayanEngine.reset(withInt: mayanEngine.resultsInt!)
+        mayanEngine.mathOp = .divide
+        mayanEngine.rightSideDigitValues = [5]
+        mayanEngine.equalEnabled = true
+        mayanEngine.deriveResults()
+        XCTAssert(mayanEngine.resultsInt! == 2)
+        
+        // Test subtraction
+        mayanEngine.reset(withInt: mayanEngine.resultsInt!)
+        mayanEngine.mathOp = .subtract
+        mayanEngine.rightSideDigitValues = [5]
+        mayanEngine.equalEnabled = true
+        mayanEngine.deriveResults()
+        XCTAssert(mayanEngine.resultsInt! == -3)
+        
+        // Test negation of right side operand
+        mayanEngine.reset(withInt: mayanEngine.resultsInt!)
+        mayanEngine.mathOp = .multiply
+        mayanEngine.rightSideDigitValues = [10]
+        mayanEngine.negateRightSide()
+        mayanEngine.equalEnabled = true
+        mayanEngine.deriveResults()
+        XCTAssert(mayanEngine.resultsInt! == 30)
+
     }
 
     func testMayanImage() {

@@ -160,6 +160,15 @@ public class MayanMath: ObservableObject {
       Append with the base 20 place values of an integer, where the last item is the 1's place, second to last is the 20's place, third to last is the 400's place, etc., as the user selects Mayan glyphs
     */
     @Published public var leftSideDigitValues: [Int] = []
+    
+    /**
+      Negate the left side operand - effectively multiplying it by -1
+    */
+    public func negateLeftSide() {
+        for index in 0..<leftSideDigitValues.count {
+            leftSideDigitValues[index] *= -1
+        }
+    }
 
     /**
       Right side operand in math operation
@@ -175,6 +184,16 @@ public class MayanMath: ObservableObject {
       Append with the base 20 place values of an integer, where the last item is the 1's place, second to last is the 20's place, third to last is the 400's place, etc., as the user selects Mayan glyphs
     */
     @Published public var rightSideDigitValues: [Int] = []
+    
+    /**
+      Negate the right side operand - effectively multiplying it by -1
+    */
+    public func negateRightSide() {
+        for index in 0..<rightSideDigitValues.count {
+            rightSideDigitValues[index] *= -1
+        }
+    }
+
 
     /**
       Result of math operation
