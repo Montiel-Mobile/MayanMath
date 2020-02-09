@@ -162,15 +162,6 @@ public class MayanMath: ObservableObject {
     @Published public var leftSideDigitValues: [Int] = []
     
     /**
-      Negate the left side operand - effectively multiplying it by -1
-    */
-    public func negateLeftSide() {
-        for index in 0..<leftSideDigitValues.count {
-            leftSideDigitValues[index] *= -1
-        }
-    }
-
-    /**
       Right side operand in math operation
     */
     public var rightSide: Int? {
@@ -186,12 +177,23 @@ public class MayanMath: ObservableObject {
     @Published public var rightSideDigitValues: [Int] = []
     
     /**
-      Negate the right side operand - effectively multiplying it by -1
+      Negate the active operand - effectively multiplying it by -1
     */
-    public func negateRightSide() {
-        for index in 0..<rightSideDigitValues.count {
-            rightSideDigitValues[index] *= -1
+    public func negate() {
+        
+        guard equalEnabled == false else { return }
+        
+        if  let _ = mathOp {
+            for index in 0..<rightSideDigitValues.count {
+                rightSideDigitValues[index] *= -1
+            }
         }
+        else {
+            for index in 0..<leftSideDigitValues.count {
+                leftSideDigitValues[index] *= -1
+            }
+        }
+        deriveResults()
     }
 
 

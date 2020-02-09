@@ -21,11 +21,11 @@ MayanMath is setup to be used as a singleton. So it is referenced as MayanMath.s
 
 **leftSideDigitValues** *{ get set }* - an array of integers that represent a single base 20 place value ( 0 -> 19 )
 **leftSide** *{ get }* - a readonly integer that is derived from the leftSideDigitValues array
-**negateLeftSide()** - a function to negate, toggle the +/-, the leftSideDigitValues array
 
 **rightSideDigitValues** *{ get set }* - an array of integers that represent a single base 20 place value ( 0 -> 19 )
 **rightSide** *{ get }* - a readonly integer that is derived from the rightSideDigitValues array
-**negateRightSide()** - a function to negate, toggle the +/-, the rightSideDigitValues array
+
+**negate()** - a function to negate, toggle the +/-, the active operand array
 
 **resultDigitValues** *{ get }* - an array of integers that represent a single base 20 place value ( 0 -> 19 )
 **resultsInt** *{ get }* - a readonly integer that is derived from the rightSideDigitValues array
