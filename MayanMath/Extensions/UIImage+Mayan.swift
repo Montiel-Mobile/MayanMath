@@ -45,7 +45,7 @@ public enum Symbol: String {
 
 extension UIImage {
         
-    class func symbol(_ symbol: Symbol, _ type: SymbolType) -> UIImage {
+    class func symbol(_ symbol: Symbol, _ type: SymbolType, _ isNegative: Bool) -> UIImage {
         
         let name = "\(symbol.rawValue)\(type.rawValue)"
         return UIImage(named: name,  in: Bundle(for: MayanMath.self), with: nil)!

@@ -317,8 +317,7 @@ public class MayanMath: ObservableObject {
                     _resultsInt = first + second
                     
                 case .subtract:
-                    _resultsRem = first >= second ? nil : first - second
-                    _resultsInt = first >= second ? first - second : 0
+                    _resultsInt = first - second
                     
                 case .multiply:
                     _resultsInt = first * second

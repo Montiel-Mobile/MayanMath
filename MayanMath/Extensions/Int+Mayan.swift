@@ -33,14 +33,19 @@ public extension Int {
         
         var ints: [Int] = []
         var value = self
-        if value > 0 {
-            while value > 0 {
-                ints.insert(value % base, at: 0)
-                value /= base
-            }
+        
+        if value == 0 {
+            ints.append(0)
         }
         else {
-            ints.append(0)
+            
+            let isNegative = value < 0
+            value *= isNegative ? -1 : 1
+
+            while value > 0 {
+                ints.insert((value % base) * (isNegative ? -1 : 1), at: 0)
+                value /= base
+            }
         }
         return ints
     }
@@ -51,7 +56,13 @@ public extension Int {
         
         var value = self
         
-        if value > 0 {
+        if value == 0 {
+            symbols.append([.symbol(Symbol.zeroDown, symbolType, false)])
+        }
+        else {
+            
+            let isNegative = value < 0
+            value *= isNegative ? -1 : 1
             
             while value > 0 {
                 
@@ -62,13 +73,13 @@ public extension Int {
                     let remainder5 = remainder20 % 5
                     switch remainder5 {
                     case 1:
-                        symbol.append(.symbol(Symbol.one, symbolType))
+                        symbol.append(.symbol(Symbol.one, symbolType, isNegative))
                     case 2:
-                        symbol.append(.symbol(Symbol.two, symbolType))
+                        symbol.append(.symbol(Symbol.two, symbolType, isNegative))
                     case 3:
-                        symbol.append(.symbol(Symbol.three, symbolType))
+                        symbol.append(.symbol(Symbol.three, symbolType, isNegative))
                     case 4:
-                        symbol.append(.symbol(Symbol.four, symbolType))
+                        symbol.append(.symbol(Symbol.four, symbolType, isNegative))
                     default:
                         break
                     }
@@ -76,13 +87,13 @@ public extension Int {
                     remainder20 /= 5
                     switch remainder20 {
                     case 0:
-                        symbol.append(.symbol(Symbol.zeroDown, symbolType))
+                        symbol.append(.symbol(Symbol.zeroDown, symbolType, isNegative))
                     case 1:
-                        symbol.append(.symbol(Symbol.five, symbolType))
+                        symbol.append(.symbol(Symbol.five, symbolType, isNegative))
                     case 2:
-                        symbol.append(.symbol(Symbol.ten, symbolType))
+                        symbol.append(.symbol(Symbol.ten, symbolType, isNegative))
                     case 3:
-                        symbol.append(.symbol(Symbol.fifteen, symbolType))
+                        symbol.append(.symbol(Symbol.fifteen, symbolType, isNegative))
                     default:
                         break
                     }
@@ -90,15 +101,15 @@ public extension Int {
                 else {
                     switch remainder20 {
                     case 0:
-                        symbol.append(.symbol(Symbol.zeroDown, symbolType))
+                        symbol.append(.symbol(Symbol.zeroDown, symbolType, isNegative))
                     case 1:
-                        symbol.append(.symbol(Symbol.one, symbolType))
+                        symbol.append(.symbol(Symbol.one, symbolType, isNegative))
                     case 2:
-                        symbol.append(.symbol(Symbol.two, symbolType))
+                        symbol.append(.symbol(Symbol.two, symbolType, isNegative))
                     case 3:
-                        symbol.append(.symbol(Symbol.three, symbolType))
+                        symbol.append(.symbol(Symbol.three, symbolType, isNegative))
                     case 4:
-                        symbol.append(.symbol(Symbol.four, symbolType))
+                        symbol.append(.symbol(Symbol.four, symbolType, isNegative))
                     default:
                         break
                     }
@@ -109,10 +120,7 @@ public extension Int {
                 symbols.insert(symbol, at: 0)
             }
         }
-        else {
-            symbols.append([.symbol(Symbol.zeroDown, symbolType)])
-        }
-        
+
         return symbols
     }
 }
