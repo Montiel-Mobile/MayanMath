@@ -32,6 +32,9 @@ public extension Int {
     func digitValues(forBase base: Int = 20) -> [Int] {
         
         var ints: [Int] = []
+        var isNegative: Bool {
+            return self < 0
+        }
         var value = self
         
         if value == 0 {
@@ -39,7 +42,6 @@ public extension Int {
         }
         else {
             
-            let isNegative = value < 0
             value *= isNegative ? -1 : 1
 
             while value > 0 {
@@ -53,15 +55,16 @@ public extension Int {
     func mayanSymbols(_ symbolType: SymbolType) -> [[UIImage]] {
 
         var symbols: [[UIImage]] = []
-        
+        var isNegative: Bool {
+            return self < 0
+        }
         var value = self
         
         if value == 0 {
-            symbols.append([.symbol(Symbol.zeroDown, symbolType, false)])
+            symbols.append([.symbol(Symbol.zeroDown, symbolType, isNegative)])
         }
         else {
             
-            let isNegative = value < 0
             value *= isNegative ? -1 : 1
             
             while value > 0 {
