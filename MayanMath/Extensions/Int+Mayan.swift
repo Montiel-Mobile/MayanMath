@@ -52,12 +52,9 @@ public extension Int {
         return ints
     }
     
-    func mayanSymbols(_ symbolType: SymbolType) -> [[UIImage]] {
+    func mayanSymbols(_ symbolType: SymbolType, _ isNegative: Bool) -> [[UIImage]] {
 
         var symbols: [[UIImage]] = []
-        var isNegative: Bool {
-            return self < 0
-        }
         var value = self
         
         if value == 0 {

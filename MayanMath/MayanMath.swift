@@ -61,9 +61,9 @@ public class MayanMath: ObservableObject {
     * Parameter symbolType: The type of symbol desired, flat or beveled.
     * Returns: a MayanGlyph.
     */
-    public class func mayanGlyph(forInt int: Int, _ symbolType: SymbolType = .flat) -> MayanGlyph {
+    public class func mayanGlyph(forInt int: Int, _ symbolType: SymbolType = .flat, _ isNegative: Bool) -> MayanGlyph {
         
-        guard let glyph = MayanMath.symbols(forInt: int, symbolType).last else {
+        guard let glyph = MayanMath.symbols(forInt: int, symbolType, isNegative).last else {
             fatalError("Something is wrong, should always derive a symbol")
         }
         
@@ -78,10 +78,10 @@ public class MayanMath: ObservableObject {
     * Parameter symbolType: The type of symbol desired, flat or beveled.
     * Returns: an array of UIImage.
     */
-    public class func symbols(forInt int: Int, _ symbolType: SymbolType) -> [UIImage] {
+    public class func symbols(forInt int: Int, _ symbolType: SymbolType, _ isNegative: Bool) -> [UIImage] {
         
         var mayanSymbols: [UIImage] = []
-        for symbol in int.mayanSymbols(symbolType) {
+        for symbol in int.mayanSymbols(symbolType, isNegative) {
             if let mayanSymbol  = MayanMath.image(forMayanSymbols: symbol) {
                 mayanSymbols.append(mayanSymbol)
             }
@@ -162,6 +162,18 @@ public class MayanMath: ObservableObject {
     @Published public var leftSideDigitValues: [Int] = []
     
     /**
+      Left side is currently a negative value
+     
+    */
+    public var leftSideIsNegative: Bool {
+        var value: Int = 0
+        leftSideDigitValues.forEach { (int) in
+            value += int
+        }
+        return (value < 0)
+    }
+    
+    /**
       Right side operand in math operation
     */
     public var rightSide: Int? {
@@ -176,6 +188,18 @@ public class MayanMath: ObservableObject {
     */
     @Published public var rightSideDigitValues: [Int] = []
     
+    /**
+      Right side is currently a negative value
+     
+    */
+    public var rightSideIsNegative: Bool {
+        var value: Int = 0
+        rightSideDigitValues.forEach { (int) in
+            value += int
+        }
+        return (value < 0)
+    }
+
     /**
       Negate the active operand - effectively multiplying it by -1
     */
