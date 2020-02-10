@@ -45,7 +45,7 @@ public typealias MayanGlyph = (int: Int, glyph: UIImage)
     - Math operations on base 20 integer places array operands and results. The consumer populates the base 20 integer places arrays, using the various methods available.
   
  * Author: John Montiel, Montiel Mobile, LLC
- * Version: 1.6
+ * Version: 1.7
  */
 public class MayanMath: ObservableObject {
     /**
