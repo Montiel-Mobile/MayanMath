@@ -370,7 +370,7 @@ public class MayanMath: ObservableObject {
                     _resultsInt = first * second
                     
                 case .divide:
-                    if second > 0 {
+                    if second != 0 {
                         _resultsRem = first % second > 0 ? first % second : nil
                         _resultsInt = first / second
                     }
