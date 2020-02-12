@@ -103,6 +103,23 @@ class MayanMathTests: XCTestCase {
         mayanEngine.deriveResults()
         XCTAssert(mayanEngine.resultsInt! == 30)
 
+        // Test divide by negative number
+        mayanEngine.reset(withInt: mayanEngine.resultsInt!)
+        mayanEngine.mathOp = .divide
+        mayanEngine.rightSideDigitValues = [2]
+        mayanEngine.negate()
+        mayanEngine.equalEnabled = true
+        mayanEngine.deriveResults()
+        XCTAssert(mayanEngine.resultsInt! == -15)
+
+        // Test divide by 0
+        mayanEngine.reset(withInt: mayanEngine.resultsInt!)
+        mayanEngine.mathOp = .divide
+        mayanEngine.rightSideDigitValues = [0]
+        mayanEngine.equalEnabled = true
+        mayanEngine.deriveResults()
+        XCTAssert(mayanEngine.resultsInt! == Int.max)
+
     }
 
     func testMayanImage() {

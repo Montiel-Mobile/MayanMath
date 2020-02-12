@@ -44,9 +44,9 @@ public typealias MayanGlyph = (int: Int, glyph: UIImage)
     - Conversion from integer to base 20 integer places and Mayan glyphs images
     - Math operations on base 20 integer places array operands and results. The consumer populates the base 20 integer places arrays, using the various methods available.
   
- * Author: John Montiel, Montiel Mobile, LLC
- * Version: 1.7
- */
+* Author: John Montiel, Montiel Mobile, LLC
+* Version: 1.8
+*/
 public class MayanMath: ObservableObject {
     /**
       Reference to the shared singleton instance of MayanMath
