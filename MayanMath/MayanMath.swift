@@ -128,7 +128,7 @@ public class MayanMath: ObservableObject {
                 bottomRect = CGRect(x: 0, y: topRect!.origin.y + topRect!.size.height, width: bottomImage.size.width, height: bottomImage.size.height)
             }
             
-            UIGraphicsBeginImageContext(CGSize(width: bottomImage.size.width, height: bottomImage.size.width))
+            UIGraphicsBeginImageContextWithOptions(CGSize(width: bottomImage.size.width, height: bottomImage.size.width), false, UIScreen.main.scale)
             let context = UIGraphicsGetCurrentContext()!
             context.interpolationQuality = .none
             
@@ -138,7 +138,7 @@ public class MayanMath: ObservableObject {
             context.draw(bottomCGImage, in: bottomRect)
             
             if let preImage = UIGraphicsGetImageFromCurrentImageContext(), let cgImage = preImage.cgImage {
-                newSymbolImage = UIImage(cgImage: cgImage, scale: 1.0/UIScreen.main.scale, orientation: .upMirrored)
+                newSymbolImage = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .upMirrored)
             }
             UIGraphicsEndImageContext()
         }
